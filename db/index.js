@@ -22,11 +22,11 @@ var reviewCommentSchema = new mongoose.Schema({
   // 'hostMessage' : String,
 });
 
-const ReviewComment = mongoose.model('ReviewComment', reviewCommentSchema);
 
+const ReviewComment = mongoose.model('ReviewComment', reviewCommentSchema);
 
 module.exports = {
   ReviewComment: ReviewComment,
-  reviewCommentSchema: reviewCommentSchema
+  reviewCommentSchema: reviewCommentSchema,
 };
 
