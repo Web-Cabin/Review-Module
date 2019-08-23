@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/review', {useNewUrlParser: true});
-
-console.log('we are in');
+const db = mongoose.connect('mongodb://localhost/review', {useNewUrlParser: true});
 
 var reviewCommentSchema = new mongoose.Schema({
+  'listingID' : Number,
+  // 'id': Number, 
   'name': String,
   'profilePic': String,
   'message' : String,
@@ -16,8 +16,17 @@ var reviewCommentSchema = new mongoose.Schema({
   'checkIn' : Number,
   'cleanliness' : Number,
   'value' : Number,
-  'responseComment' : String
+  // 'hostName': String,
+  // 'hostPic' : String,
+  // 'hostDate' : String,
+  // 'hostMessage' : String,
 });
 
-var reviewComment = mongoose.model('reviewComment', reviewCommentSchema);
+const ReviewComment = mongoose.model('ReviewComment', reviewCommentSchema);
+
+
+module.exports = {
+  ReviewComment: ReviewComment,
+  reviewCommentSchema: reviewCommentSchema
+};
 

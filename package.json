@@ -8,10 +8,16 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "react-dev": "webpack -d --watch"
+    "seed": "node seed.js",
+    "react-dev": "webpack -d --watch",
+    "start-build": "npx nodemon server/index.js"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "jest": "^24.9.0",
     "mongoose": "^5.6.10",
+    "nodemon": "^1.19.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
