@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import CommentList from './components/CommentList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +24,10 @@ class App extends React.Component {
 
   render() {
     return(
-    <div></div>
+    <div>
+      <div>Hello</div>
+      <CommentList reviews={this.state.reviews}/>
+    </div>
     )
   };
 };

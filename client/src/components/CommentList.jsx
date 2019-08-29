@@ -1,15 +1,11 @@
 import React from 'react';
+import CommentEntry from './CommentEntry.jsx';
 
 const CommentList = (props) => (
   <div>
     <div>
-      <div>
-        <div>Date</div>
-        <div>Description</div>
-        <div>Amount</div>
-      </div>
-      <div>{props.transactions.map((transaction) => {
-        return <Transaction key={transaction.id} data={transaction}/>
+      <div>{props.reiviews.map((review) => {
+        return <CommentEntry key={review.id} data={review}/>
       })}</div>
     </div>
   </div>
