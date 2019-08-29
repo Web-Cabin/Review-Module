@@ -4,8 +4,8 @@ import CommentEntry from './CommentEntry.jsx';
 const CommentList = (props) => (
   <div>
     <div>
-      <div>{props.reiviews.map((review) => {
-        return <CommentEntry key={review.id} data={review}/>
+      <div>{props.reviews.map((review) => {
+        return <CommentEntry key={review._id} data={review}/>
       })}</div>
     </div>
   </div>

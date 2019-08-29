@@ -2,7 +2,6 @@ import React from 'react';
 
 const CommentEntry = (props) => (
   <div>
-    <div>Hello</div>
     <div>{props.data.name}</div>
     <div>{props.data.date}</div>
     <div>{props.data.message}</div>

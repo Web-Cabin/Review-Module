@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 
-const db = mongoose.connect('mongodb://localhost/review', {useNewUrlParser: true});
+const db = mongoose.connections;
+
+mongoose.connect('mongodb://localhost/review', {useNewUrlParser: true});
 
 var reviewCommentSchema = new mongoose.Schema({
   'listingID' : Number,
@@ -27,6 +29,5 @@ const ReviewComment = mongoose.model('ReviewComment', reviewCommentSchema);
 
 module.exports = {
   ReviewComment: ReviewComment,
-  reviewCommentSchema: reviewCommentSchema,
 };
 
