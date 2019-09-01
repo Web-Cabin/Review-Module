@@ -27,7 +27,8 @@
     "nodemon": "^1.19.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-fontawesome": "^1.6.1"
+    "react-fontawesome": "^1.6.1",
+    "react-star-ratings": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

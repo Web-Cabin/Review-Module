@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import CommentList from './CommentList.jsx';
 
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -51,6 +52,8 @@ class App extends Component {
     });
     console.log(this.state.avg_accuracy)
   }
+
+
 
   render() {
     return(
