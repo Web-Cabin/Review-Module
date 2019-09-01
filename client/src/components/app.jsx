@@ -25,8 +25,7 @@ class App extends Component {
   
   fetchReviews() {
     var setReviews = this.setReviews.bind(this);
-    $.get('/api/reviews/2').done(setReviews)
-    .fail(console.log('failed the setState'));
+    $.get('/api/reviews/2').done(setReviews);
   }
   
   render() {
