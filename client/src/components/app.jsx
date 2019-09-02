@@ -3,7 +3,51 @@ import $ from 'jquery';
 import CommentList from './CommentList.jsx';
 import styled from 'styled-components';
 import StarRatings from 'react-star-ratings';
+import Search from './Search.jsx';
 
+const WholeReviewDiv = styled.div`
+  display: block;
+  box-sizing: border-box;
+`;
+
+const OverallStar = styled.div`
+  display: flex;
+  margin-top: 5px;
+`;
+
+const SubStar = styled.div`
+  display: flex;
+  margin-top: 5px;
+  height: 30px;
+`;
+
+const StarBox = styled.div`
+  display: block;
+  box-sizing: border-box;
+`;
+
+const LeftBox = styled.div`
+  width: 50%;
+  float: left;
+`;
+
+const RightBox = styled.div`
+  width: 50%;
+  float: right;
+`;
+
+const MainHeader = styled.h2`
+  font-size: 24px;
+  font-weight: 800;
+  color: #484848;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+const SubHeader = styled.h3`
+  font-size: 14px;
+  color: #484848;
+  font-family: Arial, Helvetica, sans-serif;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -16,8 +60,11 @@ class App extends Component {
       avg_checkIn : 0,
       avg_cleanliness : 0,
       avg_value : 0,
+      searchValue: '',
     };
     this.setReviews = this.setReviews.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
   }
 
   
@@ -53,6 +100,30 @@ class App extends Component {
       avg_overallRating: roundedTotalRating,
     });
     console.log(this.state.avg_accuracy)
+  };
+
+  handleSearch(searchedTerm) {
+    this.setState({ searchedTerm });
+  }
+
+  clearSearch() {
+    this.setState({ searchedTerm: null });
+  }
+
+  filterReviewsBySearchedTerm() {
+    const { searchValue } = this.state;
+    const { reviews } = this.state;
+    const results = [];
+    if (searchValue) {
+      reviews.filter((review) => {
+        if (review.reviewText.indexOf(searchValue) > -1) {
+          results.push(review);
+        }
+        return undefined;
+      });
+      return results;
+    }
+    return reviews;
   }
 
 
@@ -68,32 +139,37 @@ class App extends Component {
     const { avg_value } = this.state;
 
     return(
-    <div>
-      <h1>{reviews.length} Reviews</h1>
-      <div>
+    <WholeReviewDiv>
+      <OverallStar style={{ borderBottomStyle: 'solid', borderBottomWidth: '1px', borderBottomColor: '#e4e4e4' }}>
+      <MainHeader>{reviews.length} Reviews</MainHeader>
+      <div style={{ marginTop: '25px', marginLeft: '15px', marginRight: 'auto' }}>
         <StarRatings
-        rating={avg_overallRating}
-        starDimension="20px"
-        starRatedColor="teal"
-        numberOfStars={5}
-        name="rating"
+          rating={avg_overallRating}
+          starDimension="20px"
+          starRatedColor="teal"
+          numberOfStars={5}
+          name="rating"
         />
       </div>
-      <div>
-        <h2>Accuracy</h2>
-        <div>
-          <StarRatings
-            rating={avg_accuracy}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-      </div>
-      <div>
-        <h2>Communication</h2>
-        <div>
+      <Search handleSearch={this.handleSearch} />
+      </OverallStar>
+      <StarBox>
+        <LeftBox>
+          <SubStar>
+            <SubHeader>Accuracy</SubHeader>
+            <div style={{ marginTop: '10px', marginLeft: '53px', float: 'right' }}>
+              <StarRatings
+                rating={avg_accuracy}
+                starDimension="20px"
+                starRatedColor="teal"
+                numberOfStars={5}
+                name="rating"
+              />
+            </div>
+          </SubStar>
+          <SubStar>
+        <SubHeader>Communication</SubHeader>
+        <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
           <StarRatings
             rating={avg_communication}
             starDimension="20px"
@@ -102,22 +178,24 @@ class App extends Component {
             name="rating"
           />
         </div>
-      </div>
-      <div>
-        <h2>Cleanliness</h2>
-        <div>
-          <StarRatings
-            rating={avg_cleanliness}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-      </div>
-      <div>
-        <h2>Location</h2>
-        <div>
+          </SubStar>
+          <SubStar style={{ marginBottom: '25px' }}>
+          <SubHeader>Cleanliness</SubHeader>
+          <div style={{ marginTop: '10px', marginLeft: '44px', float: 'right' }}>
+            <StarRatings
+              rating={avg_cleanliness}
+              starDimension="20px"
+              starRatedColor="teal"
+              numberOfStars={5}
+              name="rating"
+            />
+          </div>
+          </SubStar>
+        </LeftBox>
+        <RightBox>
+          <SubStar>
+        <SubHeader>Location</SubHeader>
+        <div style={{ marginTop: '10px', marginLeft: '18px', float: 'right' }}>
           <StarRatings
             rating={avg_location}
             starDimension="20px"
@@ -126,10 +204,10 @@ class App extends Component {
             name="rating"
           />
         </div>
-      </div>
-      <div>
-        <h2>Check-In</h2>
-        <div>
+          </SubStar>
+          <SubStar>
+        <SubHeader>Check-In</SubHeader>
+        <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
           <StarRatings
             rating={avg_checkIn}
             starDimension="20px"
@@ -138,10 +216,10 @@ class App extends Component {
             name="rating"
           />
         </div>
-      </div>
-      <div>
-        <h2>Value</h2>
-        <div>
+          </SubStar>
+          <SubStar>
+        <SubHeader>Value</SubHeader>
+        <div style={{ marginTop: '10px', marginLeft: '39px', float: 'right' }}>
           <StarRatings
             rating={avg_value}
             starDimension="20px"
@@ -150,11 +228,13 @@ class App extends Component {
             name="rating"
           />
         </div>
-      </div>
+          </SubStar>
+        </RightBox>
+      </StarBox>
       <div>
         <CommentList reviews={this.state.reviews}/>
       </div>
-    </div>
+    </WholeReviewDiv>
     )
   };
 };
