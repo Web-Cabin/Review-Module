@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import CommentList from './CommentList.jsx';
+import styled from 'styled-components';
+import StarRatings from 'react-star-ratings';
 
 
 class App extends Component {
@@ -56,10 +58,102 @@ class App extends Component {
 
 
   render() {
+    const { reviews } = this.state;
+    const { avg_overallRating } = this.state;
+    const { avg_accuracy } = this.state;
+    const { avg_location } = this.state;
+    const { avg_communication } = this.state;
+    const { avg_checkIn } = this.state;
+    const { avg_cleanliness } = this.state;
+    const { avg_value } = this.state;
+
     return(
     <div>
-      <h1>AirBNB Reviews</h1>
-      <CommentList reviews={this.state.reviews}/>
+      <h1>{reviews.length} Reviews</h1>
+      <div>
+        <StarRatings
+        rating={avg_overallRating}
+        starDimension="20px"
+        starRatedColor="teal"
+        numberOfStars={5}
+        name="rating"
+        />
+      </div>
+      <div>
+        <h2>Accuracy</h2>
+        <div>
+          <StarRatings
+            rating={avg_accuracy}
+            starDimension="20px"
+            starRatedColor="teal"
+            numberOfStars={5}
+            name="rating"
+          />
+        </div>
+      </div>
+      <div>
+        <h2>Communication</h2>
+        <div>
+          <StarRatings
+            rating={avg_communication}
+            starDimension="20px"
+            starRatedColor="teal"
+            numberOfStars={5}
+            name="rating"
+          />
+        </div>
+      </div>
+      <div>
+        <h2>Cleanliness</h2>
+        <div>
+          <StarRatings
+            rating={avg_cleanliness}
+            starDimension="20px"
+            starRatedColor="teal"
+            numberOfStars={5}
+            name="rating"
+          />
+        </div>
+      </div>
+      <div>
+        <h2>Location</h2>
+        <div>
+          <StarRatings
+            rating={avg_location}
+            starDimension="20px"
+            starRatedColor="teal"
+            numberOfStars={5}
+            name="rating"
+          />
+        </div>
+      </div>
+      <div>
+        <h2>Check-In</h2>
+        <div>
+          <StarRatings
+            rating={avg_checkIn}
+            starDimension="20px"
+            starRatedColor="teal"
+            numberOfStars={5}
+            name="rating"
+          />
+        </div>
+      </div>
+      <div>
+        <h2>Value</h2>
+        <div>
+          <StarRatings
+            rating={avg_value}
+            starDimension="20px"
+            starRatedColor="teal"
+            numberOfStars={5}
+            name="rating"
+          />
+        </div>
+      </div>
+      <div>
+        <CommentList reviews={this.state.reviews}/>
+      </div>
     </div>
     )
   };
