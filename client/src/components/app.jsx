@@ -74,7 +74,7 @@ class App extends Component {
 
   
   fetchReviews() {
-    $.get('/api/reviews/2', (reviews) => {
+    $.get('http://localhost:3002/api/listings/2', (reviews) => {
       this.setReviews(reviews);
     });
   }

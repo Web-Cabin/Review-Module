@@ -19,6 +19,7 @@
     "start-build": "npx nodemon server/index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jest": "^24.9.0",
