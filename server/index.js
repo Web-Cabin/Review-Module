@@ -22,15 +22,15 @@ app.get('/api/listings/:id', (req, res) => {
   })
 })
 
-app.get('/bundle.js', (req, res) => {
-  res.sendFile('../client/dist/bundle.js', (error) => {
-    if (error) {
-      console.log('Wendy is cool');
-    } else {
-      console.log('Han is a pleb');
-    }
-  })
-})
+// app.get('/bundle.js', (req, res) => {
+//   res.sendFile('../client/dist/bundle.js', (error) => {
+//     if (error) {
+//       console.log('Wendy is cool');
+//     } else {
+//       console.log('Han is a pleb');
+//     }
+//   })
+// })
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
